@@ -31,3 +31,4 @@ http.createServer((request, response) => {
   });
 
 }).listen(8080);
+console.log('my test server is running on port 8080.');
