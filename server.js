@@ -7,25 +7,26 @@ http.createServer((request, response) => {
   q = url.parse(addr, true),
   filepath = ' ';
 
-  fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new date() + '\n\n', (err) => {
+  fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('Added to Log.');
+      console.log('Added to log.');
     }
   });
 
   if (q.pathname.includes('documentation')) {
-    filepath = (__dirname + 'documentation.html');
+    filePath = (__dirname + '/documentation.html');
   } else {
-    filepath = 'index.html'
+    filePath = (__dirname + '/index.html');
   };
 
-  fs.readfile(filepath, (err, data) => {
+  fs.readFile(filePath, (err, data) => {
     if (err) {
       throw err;
     }
-    response.writeHead(200, { 'Content-Type': 'text/html'});
+
+    response.writeHead(200, { 'Content-Type': 'text/html' });
     response.write(data);
     response.end();
   });
