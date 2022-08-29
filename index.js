@@ -72,8 +72,6 @@ let topMovies = [
   }
 ];
 
-app.use(morgan('combined', {stream: accessLogStream}));
-
 app.get('/', (req, res) => {
   res.send('Grab the popcorn, time for a movie!');
 });
@@ -82,12 +80,14 @@ app.get('/movies', (req, res) => {
   res.json('topMovies');
 });
 
+app.use(morgan('combined', {stream: accessLogStream}));
+
+app.use(express.static('public')); //routes static requests to the public folder
+
 app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).send('Well crap, something broke.');
 });
-
-app.use(express.static('public')); //routes static requests to the public folder
 
 //listens for requests
 app.listen(8080, () => {
