@@ -75,9 +75,6 @@ let topMovies = [
   }
 ];
 
-app.get('/', (req, res) => {
-  res.send('Grab the popcorn, time for a movie!');
-});
 let users = [
   {
     id: 1,
@@ -95,6 +92,32 @@ let users = [
 app.get('/movies', (req, res) => {
   res.json('topMovies');
 });
+
+//READ
+app.get('/movies/:title', (req, res) => {
+  const { title } = req.params;
+  const movie = topMovies.find( movie => movie.Title === title );
+
+  if (movie) {
+    res.status(200).json(movie);
+  } else {
+    res.status(400).send('no such movie');
+  }
+});
+
+//READ
+// app.get('/movies/genre/:genreName', (req, res) => {
+//   const { genreName } = req.params;
+//   const genre = topMovies.find( movie => movie.Genre.Name === genreName ).Genre;
+//
+//   if (genre) {
+//     res.status(200).json(genre);
+//   } else {
+//     res.status(400).send('no such genre');
+//   }
+// });
+
+
 
 app.use(morgan('combined', {stream: accessLogStream}));
 
