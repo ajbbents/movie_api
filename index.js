@@ -88,9 +88,17 @@ let users = [
   }
 ];
 
+// app.get('/', (req, res) => {
+//   res.send('Grab the popcorn, time for a movie!');
+// });
 
+// app.get('/movies', (req, res) => {
+//   res.json('topMovies');
+// });
+
+//READ
 app.get('/movies', (req, res) => {
-  res.json('topMovies');
+  res.status(200).json('topMovies');
 });
 
 //READ
