@@ -78,6 +78,19 @@ let topMovies = [
 app.get('/', (req, res) => {
   res.send('Grab the popcorn, time for a movie!');
 });
+let users = [
+  {
+    id: 1,
+    name: Eliot,
+    favoriteMovies: []
+  },
+  {
+    id: 2,
+    name: Sally,
+    favoriteMovies: ['Dead Poets Society']
+  }
+];
+
 
 app.get('/movies', (req, res) => {
   res.json('topMovies');
