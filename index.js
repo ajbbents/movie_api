@@ -12,28 +12,30 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 let topMovies = [
   {
-    title: 'The Breakfast Club',
-    year: '1985',
-    director: 'John Hughes',
-    stars: 'Molly Ringwald'
+    Title: 'The Breakfast Club',
+    Genre: 'Coming of Age',
+    Year: '1985',
+    Director: 'John Hughes',
+    Stars: 'Molly Ringwald'
   },
   {
-    title: '10 Things I Hate About You',
-    year: '1999',
-    director: 'Gil Junger',
-    stars: 'Heath Ledger'
+    Title: '10 Things I Hate About You',
+    Genre: 'Rom-Com',
+    Year: '1999',
+    Director: 'Gil Junger',
+    Stars: 'Heath Ledger'
   },
   {
-    title: 'Mean Girls',
-    year: '2004',
-    director: 'Mark Waters',
-    stars: 'Lindsay Lohan'
+    Title: 'Mean Girls',
+    Year: '2004',
+    Director: 'Mark Waters',
+    Stars: 'Lindsay Lohan'
   },
   {
-    title: 'Can\'t Hardly Wait',
-    year: '1998',
-    director: 'Harry Elfont',
-    stars: 'Jennifer Love Hewitt'
+    Title: 'Can\'t Hardly Wait',
+    Year: '1998',
+    Director: 'Harry Elfont',
+    Stars: 'Jennifer Love Hewitt'
   },
   {
     title: 'Clueless',
