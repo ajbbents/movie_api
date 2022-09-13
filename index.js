@@ -10,6 +10,15 @@ app.use(bodyParser.json());
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
+app.use(morgan('combined', {stream: accessLogStream}));
+
+app.use(express.static('public')); //routes static requests to the public folder
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Well crap, something broke.');
+});
+
 let topMovies = [
   {
     Title: 'The Breakfast Club',
