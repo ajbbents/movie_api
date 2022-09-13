@@ -130,18 +130,17 @@ app.get('/movies/:title', (req, res) => {
   }
 });
 
-//READ
-// app.get('/movies/genre/:genreName', (req, res) => {
-//   const { genreName } = req.params;
-//   const genre = topMovies.find( movie => movie.Genre.Name === genreName ).Genre;
-//
-//   if (genre) {
-//     res.status(200).json(genre);
-//   } else {
-//     res.status(400).send('no such genre');
-//   }
-// });
+//READ genre by genre title
+app.get('/movies/genre/:genreName', (req, res) => {
+  const { genreName } = req.params;
+  const genre = topMovies.find((movie) => movie.Genre.Name === genreName ).Genre;
 
+  if (genre) {
+    res.status(200).json(genre);
+  } else {
+    res.status(400).send('no such genre');
+  }
+});
 
 
 app.use(morgan('combined', {stream: accessLogStream}));
