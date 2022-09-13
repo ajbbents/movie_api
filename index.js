@@ -22,78 +22,86 @@ app.use((err, req, res, next) => {
 let topMovies = [
   {
     Title: 'The Breakfast Club',
-    Genre: 'Coming of Age',
+    Genre: { Name: 'Coming of Age' },
     Year: '1985',
-    Director: 'John Hughes',
+    Director: { Name: 'John Hughes' },
     Stars: 'Molly Ringwald'
   },
   {
     Title: '10 Things I Hate About You',
-    Genre: 'Rom-Com',
+    Genre: { Name: 'Rom-Com' },
     Year: '1999',
-    Director: 'Gil Junger',
+    Director: { Name: 'Gil Junger' },
     Stars: 'Heath Ledger'
   },
   {
     Title: 'Mean Girls',
+    Genre: { Name: 'Comedy' },
     Year: '2004',
-    Director: 'Mark Waters',
+    Director: { Name: 'Mark Waters' },
     Stars: 'Lindsay Lohan'
   },
   {
     Title: 'Can\'t Hardly Wait',
+    Genre: { Name: 'Rom-Com' },
     Year: '1998',
-    Director: 'Harry Elfont',
+    Director: { Name: 'Harry Elfont' },
     Stars: 'Jennifer Love Hewitt'
   },
   {
-    title: 'Clueless',
-    year: '1995',
-    director: 'Amy Heckerling',
-    stars: 'Alicia Silverstone'
+    Title: 'Clueless',
+    Genre: { Name: 'Comedy' },
+    Year: '1995',
+    Director: { Name: 'Amy Heckerling' },
+    Stars: 'Alicia Silverstone'
   },
   {
-    title: 'Saved',
-    year: '2004',
-    director: 'Brian Dannelly',
-    stars: 'Mandy Moore'
+    Title: 'Saved',
+    Genre: { Name: 'Coming of Age' },
+    Year: '2004',
+    Director: { Name: 'Brian Dannelly' },
+    Stars: 'Mandy Moore'
   },
   {
-    title: 'Bring It On',
-    year: '2000',
-    director: 'Peyton Reed',
-    stars: 'Kirsten Dunst'
+    Title: 'Bring It On',
+    Genre: { Name: 'Comedy' },
+    Year: '2000',
+    Director: { Name: 'Peyton Reed' },
+    Stars: 'Kirsten Dunst'
   },
   {
-    title: 'Drumline',
-    year: '2000',
-    director: 'Charles Stone III',
-    stars: 'Nick Cannon'
+    Title: 'Drumline',
+    Genre: { Name: 'Rom-Com' },
+    Year: '2000',
+    Director: { Name: 'Charles Stone III' },
+    Stars: 'Nick Cannon'
   },
   {
-    title: 'Almost Famous',
-    year: '2000',
-    director: 'Cameron Crowe',
-    stars: 'Billy Crudup'
+    Title: 'Almost Famous',
+    Genre: { Name: 'Coming of Age' },
+    Year: '2000',
+    Director: { Name: 'Cameron Crowe' },
+    Stars: 'Billy Crudup'
   },
   {
-    title: 'Dead Poets Society',
-    year: '1989',
-    director: 'Peter Weir',
-    stars: 'Robin Williams'
+    Title: 'Dead Poets Society',
+    Genre: { Name: 'Coming of Age' },
+    Year: '1989',
+    Director: { Name: 'Peter Weir' },
+    Stars: 'Robin Williams'
   }
 ];
 
 let users = [
   {
     id: 1,
-    name: Eliot,
+    name: 'Eliot',
     favoriteMovies: []
   },
   {
     id: 2,
-    name: Sally,
-    favoriteMovies: ['Dead Poets Society']
+    name: 'Sally',
+    favoriteMovies: ['Clueless']
   }
 ];
 
