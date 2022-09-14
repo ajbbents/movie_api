@@ -105,20 +105,20 @@ let users = [
   }
 ];
 
-// app.get('/', (req, res) => {
-//   res.send('Grab the popcorn, time for a movie!');
-// });
+app.get('/', (req, res) => {
+  res.send('Grab the popcorn, time for a movie!');
+});
 
 // app.get('/movies', (req, res) => {
 //   res.json('topMovies');
 // });
 
-//READ
+//READ list all movies
 app.get('/movies', (req, res) => {
   res.status(200).json('topMovies');
 });
 
-//READ
+//READ get a single movie
 app.get('/movies/:title', (req, res) => {
   const { title } = req.params;
   const movie = topMovies.find( movie => movie.Title === title );
@@ -145,11 +145,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
 
 app.use(morgan('combined', {stream: accessLogStream}));
 
-app.use(express.static('public')); //routes static requests to the public folder
 
-app.use((err, req, res) => {
-  console.error(err.stack);
-  res.status(500).send('Well crap, something broke.');
 });
 
 //listens for requests
