@@ -154,6 +154,34 @@ app.get('/movies/directors/:directorName', (req, res) => {
   }
 });
 
+//CREATE new users
+app.post('/users', (req, res) => {
+  const newUser = req.body;
+
+  if (newUser.name) {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).json(newUser);
+  } else {
+    res.status(400).send('users need names, fool');
+  }
+});
+
+//UPDATE user info
+app.put('/users/:id', (req, res) => {
+  const { id } = req.params;
+  const updatedUser = req.body;
+
+  let user = users.find(user => user.id == id);
+
+  if (user) {
+    user.name = updatedUser.name;
+    res.status(200).json(user);
+  } else {
+    res.status(400).send('they aint here');
+  }
+});
+
 
 
 });
