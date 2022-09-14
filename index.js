@@ -121,12 +121,12 @@ app.get('/movies', (req, res) => {
 //READ get a single movie
 app.get('/movies/:title', (req, res) => {
   const { title } = req.params;
-  const movie = topMovies.find( movie => movie.Title === title );
+  const movie = topMovies.find((movie) => movie.Title === title);
 
   if (movie) {
     res.status(200).json(movie);
   } else {
-    res.status(400).send('no such movie');
+    res.status(400).send('no such movie!!');
   }
 });
 
