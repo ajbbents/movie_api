@@ -147,7 +147,6 @@ app.get('/movies/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
   const director = topMovies.find( movie => movie.Director.Name === directorName ).Director;
 
-app.use(morgan('combined', {stream: accessLogStream}));
   if (director) {
     res.status(200).json(director);
   } else {
