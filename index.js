@@ -129,6 +129,20 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
   });
 });
 
+//Delete a user by username w Mongoose
+app.delete('/users/:UserName', (req, res) => {
+  Users.findOneAndRemove({ UserName: req.params.UserName })
+    .then((users) => {
+      if (!users) {
+        res.status(400).send(req.params.UserName + ' was not found.');
+      } else {
+        res.status(200).send(req.params.UserName + ' was deleted.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 //Errors
