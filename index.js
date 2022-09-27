@@ -1,12 +1,24 @@
-const express = require('express'),
+const
+  express = require('express'),
+  app = express(),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   uuid = require('uuid'),
   fs = require('fs'),
-  path = require('path');
+  path = require('path'),
+  mongoose = require('mongoose'),
+  Models = require('./models.js');
 
-const app = express();
+const Movies = Models.Movie;
+const Users = Models.Users;
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
+mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
