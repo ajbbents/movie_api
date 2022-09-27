@@ -61,28 +61,6 @@ app.post('/users', (req, res) => {
   });
 });
 
-//READ genre by genre title
-app.get('/movies/genre/:genreName', (req, res) => {
-  const { genreName } = req.params;
-  const genre = topMovies.find((movie) => movie.Genre.Name === genreName ).Genre;
-
-  if (genre) {
-    res.status(200).json(genre);
-  } else {
-    res.status(400).send('no such genre');
-  }
-});
-
-//READ director by name
-app.get('/movies/directors/:directorName', (req, res) => {
-  const { directorName } = req.params;
-  const director = topMovies.find( movie => movie.Director.Name === directorName ).Director;
-
-  if (director) {
-    res.status(200).json(director);
-  } else {
-    res.status(400).send('no such director');
-  }
 });
 
 //CREATE new users
