@@ -73,6 +73,16 @@ app.get('/users', (req, res) => {
     });
 });
 
+//READ user by username w mongoose
+app.get('/users/:UserName', (req, res) => {
+  Users.findOne({ UserName: req.params.UserName })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 });
