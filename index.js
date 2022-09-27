@@ -71,6 +71,10 @@ app.post('/users', (req, res) => {
 
 });
 
+//Errors
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Well crap, something broke.');
 });
 
 //listens for requests
