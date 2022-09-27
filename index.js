@@ -85,6 +85,32 @@ app.get('/users/:UserName', (req, res) => {
     });
 });
 
+//UPDATE user info by username w Mongoose
+/* Expect JSON in this format
+{
+  UserName: String, (required)
+  Password: String, (required)
+  Email: String, (required)
+  Birthday: Date
+}*/
+app.put('users/:UserName', (req, res) => {
+  Users.findOneAndUpdate({ UserName: req.params.UserName }, { $set:
+    {
+      UserName: req.body.UserName,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  },
+  { new: true }, //this line makes sure that the updated doc is returned
+  (err, updatedUser) => {
+    if(err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
 });
 
 });
