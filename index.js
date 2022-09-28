@@ -26,6 +26,30 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use(express.static('public')); //routes static requests to the public folder
 
+//Return all movies as JSON object
+app.get('/movies', (req, res) => {
+  Movies.find()
+  .then((movies) => {
+    res.status(201).json(movies);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+//Return movie by Title as JSON object
+app.get('/movies/:Title', (req, res) => {
+  Movies.findOne({ Title: req.params.Title })
+    .then((movie) => {
+      res.json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
 //CREATE a user w mongoose
 /*JSON expected in this format
 {
