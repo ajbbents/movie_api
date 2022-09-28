@@ -118,13 +118,13 @@ app.get('/users/:UserName', (req, res) => {
   Birthday: Date
 }*/
 app.put('users/:UserName', (req, res) => {
-  Users.findOneAndUpdate({ UserName: req.params.UserName }, { $set:
-    {
+  Users.findOneAndUpdate({ UserName: req.params.UserName },
+    { $set: {
       UserName: req.body.UserName,
       Password: req.body.Password,
       Email: req.body.Email,
       Birthday: req.body.Birthday
-    }
+    },
   },
   { new: true }, //this line makes sure that the updated doc is returned
   (err, updatedUser) => {
