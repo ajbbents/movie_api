@@ -146,7 +146,23 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
   (err, updatedUser) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error: ' + err) ;
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
+});
+
+//Delete a favorite movie w mongoose
+app.delete('/users/:UserName',  (req, res) => {
+  Users.findOneAndUpdate({ UserName: req.params.UserName }, {
+    $pull: { FavoriteMovies: req.params.MovieID }
+  },
+  { new: true }, //makes sure updated doc is returned
+  (err, updatedUser) => {
+    if(err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     } else {
       res.json(updatedUser);
     }
