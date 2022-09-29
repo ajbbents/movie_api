@@ -38,7 +38,7 @@ app.get('/movies', (req, res) => {
   });
 });
 
-//Return movie by Title as JSON object
+//Return single movie by Title as JSON object
 app.get('/movies/:Title', (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
