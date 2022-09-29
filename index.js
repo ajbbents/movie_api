@@ -50,6 +50,18 @@ app.get('/movies/:Title', (req, res) => {
     });
 });
 
+//Return all movies of a certain genre as a JSON object
+app.get('/movies/genres/:Genre', (req, res) => {
+  Movies.find({ "Genre.Name": req.params.Genre })
+  .then((movie) => {
+    res.send(movie);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
 //CREATE a user w mongoose
 /*JSON expected in this format
 {
