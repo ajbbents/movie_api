@@ -150,9 +150,11 @@ app.put('users/:UserName', (req, res) => {
       Birthday: req.body.Birthday
     }
   },
-  { new: true }, //this line makes sure that the updated doc is returned
-  (err, updatedUser) => {
-    if(err) {
+  {new: true}) //updated doc is returned
+    .then((updatedUser) => {
+      res.json(updatedUser);
+    })
+    .catch((err) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     } else {
