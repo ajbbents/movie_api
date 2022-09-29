@@ -148,7 +148,7 @@ app.put('users/:UserName', (req, res) => {
       Password: req.body.Password,
       Email: req.body.Email,
       Birthday: req.body.Birthday
-    },
+    }
   },
   { new: true }, //this line makes sure that the updated doc is returned
   (err, updatedUser) => {
