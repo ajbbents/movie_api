@@ -141,7 +141,7 @@ app.get('/users/:UserName', (req, res) => {
   Email: String, (required)
   Birthday: Date
 }*/
-app.put('users/:UserName', (req, res) => {
+app.put('/users/:UserName', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
     $set: {
       UserName: req.body.UserName,
