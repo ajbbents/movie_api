@@ -178,7 +178,7 @@ app.post('/users/:UserName/movies/:_id', (req, res) => {
 //Delete a favorite movie w mongoose
 app.delete('/users/:UserName',  (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-    $pull: { FavoriteMovies: req.params.MovieID }
+    $pull: { FavoriteMovies: req.params._id }
   },
   { new: true }, //makes sure updated doc is returned
   (err, updatedUser) => {
@@ -195,7 +195,7 @@ app.delete('/users/:UserName',  (req, res) => {
 app.delete('/users/:UserName', (req, res) => {
   Users.findOneAndRemove({ UserName: req.params.UserName })
     .then((users) => {
-      if (!users) {
+      if(!users) {
         res.status(400).send(req.params.UserName + ' was not found.');
       } else {
         res.status(200).send(req.params.UserName + ' was deleted.');
