@@ -1,8 +1,12 @@
 const
   express = require('express'),
   app = express(),
+  bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
   morgan = require('morgan'),
-  bodyParser = require('body-parser'),
   uuid = require('uuid'),
   fs = require('fs'),
   path = require('path'),
@@ -11,9 +15,6 @@ const
 
 const Movies = Models.Movie;
 const Users = Models.Users;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
 
 mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
   useNewUrlParser: true,
