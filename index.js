@@ -69,16 +69,16 @@ app.get('/movies/genres/:Genre', (req, res) => {
 });
 
 //Return data about a certain director as a JSON object
-// app.get('/movies/directors/:Director', (req, res) => {
-//   Movies.findOne({ "Director.Name": req.params.Name })
-//   .then((movie) => {
-//     res.json(movie);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//     res.status(500).send('Error: ' + err);
-//   });
-// });
+app.get('/director/:Name', (req, res) => {
+  Movies.findOne({ "Director.Name": req.params.Name })
+  .then((movie) => {
+    res.json(movie);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
 
 //CREATE a user w mongoose
 /*JSON expected in this format
