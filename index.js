@@ -27,6 +27,11 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use(express.static('public')); //routes static requests to the public folder
 
+//returns generic welcome msg
+app.get('/', (req, res) => {
+  res.send(`grab the popcorn, it's movie time!`);
+});
+
 //Return all movies as JSON object
 app.get('/movies', (req, res) => {
   Movies.find()
