@@ -185,7 +185,7 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
 //Delete a favorite movie w mongoose
 app.delete('/users/:UserName',  (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-    $pull: { FavoriteMovies: req.params._id }
+    $pull: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }, //makes sure updated doc is returned
   (err, updatedUser) => {
