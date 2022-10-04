@@ -167,17 +167,18 @@ app.put('/users/:UserName', (req, res) => {
 });
 
 //Add a favorite movie w mongoose
-app.post('/users/:UserName/movies/:_id', (req, res) => {
+app.post('/users/:UserName/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
-    $addToSet: { FavoriteMovies: req.params._id }
+    $push: { FavoriteMovies: req.params.MovieID }
   },
-  { new: true }) //Makes sure updated doc is returned
-  .then((updatedUser) => {
-  res.json(updatedUser);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send("error: " + err);
+  { new: true }, //Makes sure updated doc is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("error: " + err);
+    } else {
+      res.json(updatedUser);
+    }
   });
 });
 
