@@ -69,8 +69,8 @@ app.get('/movies/genres/:Genre', (req, res) => {
 });
 
 //Return data about a certain director as a JSON object
-app.get('/director/:Name', (req, res) => {
-  Movies.findOne({ "Director.Name": req.params.Name })
+app.get('/movies/directors/:Director', (req, res) => {
+  Movies.findOne({ "Director.Name": req.params.Director })
   .then((movie) => {
     res.json(movie);
   })
@@ -183,7 +183,7 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
 });
 
 //Delete a favorite movie w mongoose
-app.delete('/users/:UserName',  (req, res) => {
+app.delete('/users/:UserName/Movies/:MovieID',  (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
     $pull: { FavoriteMovies: req.params.MovieID }
   },
