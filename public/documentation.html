@@ -32,10 +32,12 @@
         <code class="code">
             {<br>
               Title: 'The Breakfast Club',<br>
-              Genre: { Name: 'Coming of Age' },<br>
-              Year: '1985',<br>
-              Director: { Name: 'John Hughes' },<br>
-              Stars: 'Molly Ringwald'<br>
+              Description: 'Five high school students meet in Saturday detention and discover how they have a lot more in common than they thought.',<br>
+              Genre: { Name: 'Coming of Age', Description: 'A coming-of-age story often focuses on the growth of a protagonist from childhood to adulthood. Coming-of-age stories tend to emphasize dialogue or internal monologue over action, and are often set in the past. The subjects of coming-of-age stories are typically teenagers.' },<br>
+              Director: { Name: 'John Hughes', Bio: 'John Hughes was a writer/director with the uncanny ability to tap into the minds of angsty teens and tell their stories with compassion.'},<br>
+              Actors: ['Molly Ringwald'],<br>
+              ImagePath: url,<br>
+              Featured: true<br>
             }
         </code>
           <p><strong>Response status codes: </strong></p>
@@ -44,23 +46,25 @@
 
     <div class="get_by_title">
       <h3>Get movies by title</h3>
-        <p class="url"><strong>Url: </strong>/movies/:title</p>
+        <p class="url"><strong>Url: </strong>/movies/:Title</p>
       <p><strong>Method: </strong>GET</p>
       <p><strong>Description: </strong>Endpoint allows users to access a particular movie as an object. Each object contains movie data.</p>
       <p><strong>Query parameters: </strong>:title</p>
       <p><strong>Expected request data format: </strong>Required: /movies/:title</p>
         <h5>Example: </h5>
-        <p>localhost:8080/movies/Dead%20Poets%20Society</p>
+        <p>localhost:8080/movies/The%20Breakfast%20Club</p>
       <p><strong>Format of response data: </strong>An object with data pertaining to a specific movie.</p>
         <h5>Example: </h5>
         <code class="code">
-          {<br>
-            Title: 'Dead Poets Society',<br>
-            Genre: { Name: 'Coming of Age' },<br>
-            Year: '1989',<br>
-            Director: { Name: 'Peter Weir' },<br>
-            Stars: 'Robin Williams'<br>
-          }
+            {<br>
+              Title: 'The Breakfast Club',<br>
+              Description: 'Five high school students meet in Saturday detention and discover how they have a lot more in common than they thought.',<br>
+              Genre: { Name: 'Coming of Age', Description: 'A coming-of-age story often focuses on the growth of a protagonist from childhood to adulthood. Coming-of-age stories tend to emphasize dialogue or internal monologue over action, and are often set in the past. The subjects of coming-of-age stories are typically teenagers.' },<br>
+              Director: { Name: 'John Hughes', Bio: 'John Hughes was a writer/director with the uncanny ability to tap into the minds of angsty teens and tell their stories with compassion.'},<br>
+              Actors: ['Molly Ringwald'],<br>
+              ImagePath: url,<br>
+              Featured: true<br>
+            }
         </code>
         <p><strong>Response status codes: </strong></p>
           <p>200: okay - JSON object</p>
@@ -69,18 +73,18 @@
 
     <div class="get_genre">
       <h3>Get movie genres</h3>
-        <p class="url"><strong>Url: </strong>/movies/genre/:genreName</p>
+        <p class="url"><strong>Url: </strong>/movies/genres/:Genre</p>
       <p><strong>Method: </strong>GET</p>
       <p><strong>Description: </strong>Endpoint allows users to access a particular genre as an object. Each object contains genre data.</p>
       <p><strong>Query parameters: </strong>:genreName</p>
       <p><strong>Expected request data format: </strong>Required: /genre/:genreName</p>
         <h5>Example: </h5>
-        <p>localhost:8080/movies/genre/Rom-Com</p>
+        <p>localhost:8080/movies/genres/Coming-of-Age</p>
       <p><strong>Format of response data: </strong>An object with data pertaining to a specific genre.</p>
         <h5>Example: </h5>
         <code class="code">
           {<br>
-            "Name": "Coming of Age"<br>
+            Genre: { Name: 'Coming of Age', Description: 'A coming-of-age story often focuses on the growth of a protagonist from childhood to adulthood. Coming-of-age stories tend to emphasize dialogue or internal monologue over action, and are often set in the past. The subjects of coming-of-age stories are typically teenagers.' },<br>
           }
         </code>
       <p><strong>Response status codes: </strong></p>
@@ -90,18 +94,18 @@
 
     <div class="get_director">
       <h3>Get movie directors</h3>
-        <p class="url"><strong>Url: </strong>/movies/directors/:directorName</p>
+        <p class="url"><strong>Url: </strong>/movies/directors/:Director</p>
       <p><strong>Method: </strong>GET</p>
       <p><strong>Description: </strong>Endpoint allows users to access a particular director as an object. Each object contains director data.</p>
       <p><strong>Query parameters: </strong>:directorName</p>
-      <p><strong>Expected request data format: </strong>Required: /directors/:directorName</p>
+      <p><strong>Expected request data format: </strong>Required: /directors/:Director</p>
         <h5>Example: </h5>
         <p>localhost:8080/movies/directors/John%20Hughes</p>
       <p><strong>Format of response data: </strong>An object with data pertaining to a specific director.</p>
         <h5>Example: </h5>
         <code class="code">
           {<br>
-            "Name": "John Hughes"<br>
+            Director: { Name: 'John Hughes', Bio: 'John Hughes was a writer/director with the uncanny ability to tap into the minds of angsty teens and tell their stories with compassion.'},<br>
           }
         </code>
       <p><strong>Response status codes: </strong></p>
@@ -115,99 +119,138 @@
       <p><strong>Method: </strong>POST</p>
       <p><strong>Description: </strong>Allows registration of new users. Returns JSON object with values.</p>
       <p><strong>Query parameters: </strong>None</p>
-      <p><strong>Expected request data format: </strong>Required: "name"</p>
+      <p><strong>Expected request data format: </strong>Required: "UserName"</p>
         <h5>Example: </h5>
-        <p>localhost:8080/users/1</p>
+        <p>localhost:8080/users</p>
       <p><strong>Format of response data: </strong>JSON object with new user data including a name string, favoriteMovies array, and id string.</p>
         <h5>Example: </h5>
         <code class="code">
           {<br>
-            "Name": "Evelyn",<br>
-            "favoriteMovies": [],<br>
-            "id": "1"<br>
+            {"_id": "632b7f49d30ead0fda88c1ad",
+            "UserName": "AlisonB",
+            "Password": "green",
+            "Email": "alisonb@gmail.com",
+            "Birthday": "1982-09-11T00:00:00.000Z",
+            "FavoriteMovies": [
+              "632b7680d30ead0fda88c1ac",
+              "632b631ed30ead0fda88c1a5",
+              "632b74c5d30ead0fda88c1ab"
+            ]
+            }
           }
         </code>
       <p><strong>Response status codes: </strong></p>
         <p>201: created - JSON object</p>
-        <p>400: bad request - users need names, fool!</p>
+        <p>500: error: error</p>
     </div>
 
     <div class="update-users">
       <h3>Update users</h3>
-        <p class="url"><strong>Url: </strong>/users/:id</p>
-      <p><strong>Method: </strong>PUT</p>
+        <p class="url"><strong>Url: </strong>/users/:UserName</p>
+      <p><strong>Method: </strong>POST</p>
       <p><strong>Description: </strong>Allows updating of users. Returns JSON object with key values.</p>
       <p><strong>Query parameters: </strong>:id</p>
       <p><strong>Expected request data format: </strong>Required: :id</p>
         <h5>Example: </h5>
         <code class=code>
           {<br>
-            "Name": "Evelyn new name"<br>
+            {
+            "_id": "6331d6ebae89c45753800871",
+            "UserName": "Slimer",
+            "Password": "1234",
+            "Email": "slimer@gmail.com",
+            "Birthday": "2011-01-01T06:00:00.000Z",
+            "FavoriteMovies": [],
+            }
           }
         </code>
       <p><strong>Format of response data: </strong>JSON object with updated user data including a name string, favoriteMovies array, and id string.</p>
         <h5>Example: </h5>
         <code class="code">
           {<br>
-            "id": "1",<br>
-            "Name": "Evelyn new name",<br>
-            "favoriteMovies": []<br>
+            {
+            "_id": "6331d6ebae89c45753800871",
+            "UserName": "Slimer",
+            "Password": "1234",
+            "Email": "slimer@gmail.com",
+            "Birthday": "2011-01-01T06:00:00.000Z",
+            "FavoriteMovies": [],
+            }
           }
         </code>
       <p><strong>Response status codes: </strong></p>
         <p>200: ok - JSON object</p>
-        <p>400: bad request - they aint here</p>
+        <p>500: error: error</p>
     </div>
 
     <div class="add-movie">
       <h3>Add favorite movie</h3>
-        <p class="url"><strong>Url: </strong>/users/:id/:movieTitle</p>
+        <p class="url"><strong>Url: </strong>/users/:UserName/movies/:movieID</p>
       <p><strong>Method: </strong>POST</p>
       <p><strong>Description: </strong>Allows users to add a favorite movie to an array.</p>
-      <p><strong>Query parameters: </strong>:id, :movieTitle</p>
-      <p><strong>Expected request data format: </strong>Required: :id, :movieTitle</p>
+      <p><strong>Query parameters: </strong>:UserName, :movieID</p>
+      <p><strong>Expected request data format: </strong>Required: :UserName, :movieID</p>
         <h5>Example: </h5>
-        <p>localhost:8080/users/1/Clueless</p>
+        <p>localhost:8080/users/AlisonB/movies/632b74c5d30ead0fda88c1ab</p>
       <p><strong>Format of response data: </strong>JSON object with updated favoriteMovies array.</p>
         <h5>Example: </h5>
-        <code class="code">Clueless has been added to user 1's array</code>
+        <code class="code">
+          {
+            "_id": "632b7f49d30ead0fda88c1ad",
+            "UserName": "AlisonB",
+            "Password": "green",
+            "Email": "alisonb@gmail.com",
+            "Birthday": "1982-09-11T00:00:00.000Z",
+            "FavoriteMovies": [
+              "632b7680d30ead0fda88c1ac",
+              "632b631ed30ead0fda88c1a5",
+              "632b74c5d30ead0fda88c1ab"
+            ]
+          },
+        </code>
       <p><strong>Response status codes: </strong></p>
-        <p>200: ok - movieTitle has been added to user id's array</p>
-        <p>400: bad request - they aint here</p>
+        <p>500: error: error</p>
     </div>
 
     <div class="remove-movie">
       <h3>Remove favorite movie</h3>
-        <p class="url"><strong>Url: </strong>/users/:id/:movieTitle</p>
+        <p class="url"><strong>Url: </strong>/users/:UserName/movies/:MovieID</p>
       <p><strong>Method: </strong>DELETE</p>
       <p><strong>Description: </strong>Allows users to remove a favorite movie from an array.</p>
-      <p><strong>Query parameters: </strong>:id, :movieTitle</p>
-      <p><strong>Expected request data format: </strong>Required: :id, :movieTitle</p>
+      <p><strong>Query parameters: </strong>:UserName, :MovieID</p>
+      <p><strong>Expected request data format: </strong>Required: :UserName, :MovieID</p>
         <h5>Example: </h5>
-        <p>localhost:8080/users/1/Clueless</p>
+        <p>localhost:8080/users/Slimer/movies/</p>
       <p><strong>Format of response data: </strong>JSON object with updated favoriteMovies array.</p>
         <h5>Example: </h5>
-        <code class="code">Clueless has been removed from user 1's array</code>
+        <code class="code">
+          "_id": "6331d6ebae89c45753800871",
+          "UserName": "Slimer",
+          "Password": "1234",
+          "Email": "slimer@gmail.com",
+          "Birthday": "2011-01-01T06:00:00.000Z",
+          "FavoriteMovies": [],
+        </code>
       <p><strong>Response status codes: </strong></p>
-        <p>200: ok - movieTitle has been removed from user id's array</p>
-        <p>400: bad request - they aint here</p>
+        <p>Array returned missing removed movie</p>
+        <p>500: Error: error</p>
     </div>
 
     <div class="remove-user">
       <h3>Remove user</h3>
-        <p class="url"><strong>Url: </strong>/users/:id</p>
+        <p class="url"><strong>Url: </strong>/users/:UserName</p>
       <p><strong>Method: </strong>DELETE</p>
       <p><strong>Description: </strong>Allows users to remove a user from the API.</p>
       <p><strong>Query parameters: </strong>:id</p>
-      <p><strong>Expected request data format: </strong>Required: :id</p>
+      <p><strong>Expected request data format: </strong>Required: :UserName</p>
         <h5>Example: </h5>
-        <p>localhost:8080/users/1</p>
+        <p>localhost:8080/users/Super_Slimer</p>
       <p><strong>Format of response data: </strong>Confirmation status of user removal.</p>
         <h5>Example: </h5>
-        <code class="code">User 1 has been deleted</code>
+        <code class="code">Super_Slimer was deleted.</code>
       <p><strong>Response status codes: </strong></p>
-        <p>200: ok - User id has been deleted</p>
-        <p>400: bad request - they aint here</p>
+        <p>200: ok - UserName has been deleted</p>
+        <p>500: Error: error</p>
     </div>
 
   </div>
