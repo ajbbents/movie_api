@@ -330,3 +330,7 @@
 ::1 - - [05/Oct/2022:15:32:03 +0000] "POST /users/Slimer HTTP/1.1" 404 152 "-" "PostmanRuntime/7.29.2"
 ::1 - - [05/Oct/2022:15:33:07 +0000] "POST /users/Slimer/movies/632afbdb17fcf9674c246a24 HTTP/1.1" 200 191 "-" "PostmanRuntime/7.29.2"
 ::1 - - [05/Oct/2022:15:34:53 +0000] "DELETE /users/Slimer/movies/632afbdb17fcf9674c246a24 HTTP/1.1" 200 165 "-" "PostmanRuntime/7.29.2"
+::1 - - [05/Oct/2022:16:34:47 +0000] "GET /movies HTTP/1.1" 201 8327 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+::1 - - [05/Oct/2022:16:35:01 +0000] "GET /movies/The%20Breakfast%20Club HTTP/1.1" 200 795 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+::1 - - [05/Oct/2022:16:52:30 +0000] "GET /users HTTP/1.1" 201 1193 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+::1 - - [05/Oct/2022:20:16:07 +0000] "GET /movies HTTP/1.1" 201 8327 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
