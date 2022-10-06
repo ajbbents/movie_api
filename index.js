@@ -21,6 +21,10 @@ mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
   useUnifiedTopology: true
 });
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
 app.use(morgan('combined', {stream: accessLogStream}));
@@ -33,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 //Return all movies as JSON object
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
   .then((movies) => {
     res.status(201).json(movies);
