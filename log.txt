@@ -359,3 +359,8 @@
 ::1 - - [12/Oct/2022:17:09:50 +0000] "GET /movies HTTP/1.1" 201 8327 "-" "PostmanRuntime/7.29.2"
 ::1 - - [12/Oct/2022:17:17:33 +0000] "POST /users/ HTTP/1.1" 401 - "-" "PostmanRuntime/7.29.2"
 ::1 - - [12/Oct/2022:17:17:47 +0000] "GET /users/ HTTP/1.1" 201 1531 "-" "PostmanRuntime/7.29.2"
+::1 - - [12/Oct/2022:17:24:03 +0000] "POST /users/ HTTP/1.1" 401 - "-" "PostmanRuntime/7.29.2"
+::1 - - [12/Oct/2022:17:24:43 +0000] "POST /users/ HTTP/1.1" 400 23 "-" "PostmanRuntime/7.29.2"
+::1 - - [12/Oct/2022:17:26:23 +0000] "POST /users/ HTTP/1.1" 201 173 "-" "PostmanRuntime/7.29.2"
+::1 - - [12/Oct/2022:17:30:07 +0000] "POST /movies?Username=MostSlimey&Password=1234 HTTP/1.1" 404 146 "-" "PostmanRuntime/7.29.2"
+::1 - - [12/Oct/2022:17:31:56 +0000] "GET /movies HTTP/1.1" 201 8327 "-" "PostmanRuntime/7.29.2"
