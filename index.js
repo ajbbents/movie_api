@@ -93,7 +93,7 @@ app.get('/movies/directors/:Director', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', (req, res) => {
+app.post('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOne({ UserName: req.body.UserName })
   .then((user) => {
     if (user) {
