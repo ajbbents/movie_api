@@ -41,6 +41,8 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
+const { check, validataionResult } = require('express-validator');
+
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
 app.use(morgan('combined', {stream: accessLogStream}));
@@ -109,7 +111,23 @@ app.get('/movies/directors/:Director', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', (req, res) => {
+app.post('/users',
+  //validation logic here
+  [
+    check('Username', 'Username is required.').isLength({min: 5}),
+    check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required.').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid.').isEmail()
+  ], (req, res) => {
+
+    //check validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ UserName: req.body.UserName })
   .then((user) => {
     if (user) {
@@ -118,7 +136,7 @@ app.post('/users', (req, res) => {
       Users
         .create({
           UserName: req.body.UserName,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         })
