@@ -16,7 +16,12 @@ const
 const Movies = Models.Movie;
 const Users = Models.Users;
 
-mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
+// mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
