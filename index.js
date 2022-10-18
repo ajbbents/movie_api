@@ -46,7 +46,7 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-const { check, validataionResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
