@@ -16,6 +16,8 @@ const
 const Movies = Models.Movie;
 const Users = Models.Users;
 
+const { check, validationResult } = require('express-validator');
+
 // mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true
@@ -45,8 +47,6 @@ app.use(cors({
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
-
-const { check, validationResult } = require('express-validator');
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
