@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const { check, validationResult } = require('express-validator');
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const
   morgan = require('morgan'),
@@ -15,8 +17,6 @@ const
 
 const Movies = Models.Movie;
 const Users = Models.Users;
-
-const { check, validationResult } = require('express-validator');
 
 // mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
 //   useNewUrlParser: true,
@@ -145,7 +145,7 @@ app.post('/users',
           Email: req.body.Email,
           Birthday: req.body.Birthday
         })
-        .then((user) =>{res.status(201).json(user) })
+        .then((user) =>{res.status(201).json(user)})
       .catch((error) => {
         console.error(error);
         res.status(500).send('Error: ' + error);
