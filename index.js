@@ -119,8 +119,8 @@ app.get('/movies/directors/:Director', (req, res) => {
 app.post('/users',
   //validation logic here
   [
-    check('Username', 'Username is required.').isLength({min: 5}),
-    check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('UserName', 'Username is required.').isLength({min: 5}),
+    check('UserName', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required.').not().isEmpty(),
     check('Email', 'Email does not appear to be valid.').isEmail()
   ], (req, res) => {
