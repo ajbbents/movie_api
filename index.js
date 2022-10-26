@@ -23,7 +23,7 @@ const Users = Models.Users;
 //   useUnifiedTopology: true
 // });
 
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect( process.env.CONNECTION_URI || 'mongodb+srv://AlisonB:IsMrCeZWtijmVSQ4@bingeablefilmsdb.gmmuqh8.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -31,7 +31,7 @@ mongoose.connect(process.env.CONNECTION_URI, {
 const cors = require('cors');
 app.use(cors());
 //if only certain origins are wanted:
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+// let allowedOrigins = ['http://localhost:8080', 'https://pickles2001.herokuapp.com'];
 //
 // app.use(cors({
 //   origin: (origin, callback) => {
