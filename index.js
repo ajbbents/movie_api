@@ -23,7 +23,7 @@ const Users = Models.Users;
 //   useUnifiedTopology: true
 // });
 
-mongoose.connect( process.env.CONNECTION_URI || 'mongodb+srv://AlisonB:IsMrCeZWtijmVSQ4@bingeablefilmsdb.gmmuqh8.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect( process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
