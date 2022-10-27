@@ -221,6 +221,7 @@ app.put('/users/:UserName',
     });
 });
 
+
 //Add a favorite movie w mongoose
 app.post('/users/:UserName/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
