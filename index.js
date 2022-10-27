@@ -190,11 +190,23 @@ app.get('/users/:UserName', (req, res) => {
   Email: String, (required)
   Birthday: Date
 }*/
-app.put('/users/:UserName', (req, res) => {
+app.put('/users/:UserName',
+  [
+    check('UserName', 'Username is required.').isLength({min: 5}),
+    check('UserName', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required.').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid.').isEmail()
+  ], (req, res) => {
+    let errors = validationResult(req);
+    console.log(validationResult(req));
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    };
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
     $set: {
       UserName: req.body.UserName,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
