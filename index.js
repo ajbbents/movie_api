@@ -43,6 +43,7 @@ app.use(cors());
 //     return callback(null, true);
 //   }
 // }));
+app.options('*', cors());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
