@@ -4,6 +4,23 @@ const bodyParser = require('body-parser');
 
 const { check, validationResult } = require('express-validator');
 
+const cors = require('cors');
+app.options('*', cors());
+app.use(cors());
+//if only certain origins are wanted:
+// let allowedOrigins = ['http://localhost:8080', 'https://pickles2001.herokuapp.com'];
+//
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if(!origin) return callback(null, true);
+//     if(allowedOrigins.indexOf(origin) === -1){
+//       let message = 'The CORS policy for this app says no' + origin;
+//       return callback(new Error(message ), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,23 +44,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-
-const cors = require('cors');
-app.use(cors());
-//if only certain origins are wanted:
-// let allowedOrigins = ['http://localhost:8080', 'https://pickles2001.herokuapp.com'];
-//
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){
-//       let message = 'The CORS policy for this app says no' + origin;
-//       return callback(new Error(message ), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
-app.options('*', cors());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
