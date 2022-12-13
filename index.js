@@ -6,14 +6,9 @@ const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions));
+app.options('*', cors());
+app.use(cors());
 
-// app.options('*', cors());
-// app.use(cors());
 //if only certain origins are wanted:
 // let allowedOrigins = ['http://localhost:8080', 'https://pickles2001.herokuapp.com'];
 //
@@ -47,11 +42,6 @@ const
 
 const Movies = Models.Movie;
 const Users = Models.Users;
-
-// mongoose.connect('mongodb://localhost:27017/BingeableFilmsDB', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
