@@ -2,23 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BingeworthyFilms API</title>
-</head>
-
-<body>
-  <div class="about">
     <h1>BingeworthyFilms API</h1>
     <p>API of movie titles, cast, director information for use in databases</p>
-  </div>
 
-  <div class="endpoint-listing">
+
+
     <h2>Endpoint listing</h2>
-
-    <div class="get_movies">
+   <br />
       <h3>Get all movies</h3>
         <p class="url"><strong>Url: </strong>/movies</p>
       <p><strong>Method: </strong>GET</p>
@@ -42,9 +32,7 @@
         </code>
           <p><strong>Response status codes: </strong></p>
           <p>200: okay - JSON array</p>
-    </div>
-
-    <div class="get_by_title">
+   <br />
       <h3>Get movies by title</h3>
         <p class="url"><strong>Url: </strong>/movies/:Title</p>
       <p><strong>Method: </strong>GET</p>
@@ -69,9 +57,7 @@
         <p><strong>Response status codes: </strong></p>
           <p>200: okay - JSON object</p>
           <p>400: bad request - no such movie!!</p>
-    </div>
-
-    <div class="get_genre">
+   <br />
       <h3>Get movie genres</h3>
         <p class="url"><strong>Url: </strong>/movies/genres/:Genre</p>
       <p><strong>Method: </strong>GET</p>
@@ -90,9 +76,7 @@
       <p><strong>Response status codes: </strong></p>
         <p>200: okay - JSON object</p>
         <p>400: bad request - no such genre</p>
-    </div>
-
-    <div class="get_director">
+   <br />
       <h3>Get movie directors</h3>
         <p class="url"><strong>Url: </strong>/movies/directors/:Director</p>
       <p><strong>Method: </strong>GET</p>
@@ -111,9 +95,7 @@
       <p><strong>Response status codes: </strong></p>
         <p>200: okay - JSON object</p>
         <p>400: bad request - no such director</p>
-    </div>
-
-    <div class="add-users">
+   <br />
       <h3>Create new users</h3>
         <p class="url"><strong>Url: </strong>/users</p>
       <p><strong>Method: </strong>POST</p>
@@ -142,9 +124,7 @@
       <p><strong>Response status codes: </strong></p>
         <p>201: created - JSON object</p>
         <p>500: error: error</p>
-    </div>
-
-    <div class="update-users">
+   <br />
       <h3>Update users</h3>
         <p class="url"><strong>Url: </strong>/users/:UserName</p>
       <p><strong>Method: </strong>POST</p>
@@ -181,9 +161,7 @@
       <p><strong>Response status codes: </strong></p>
         <p>200: ok - JSON object</p>
         <p>500: error: error</p>
-    </div>
-
-    <div class="add-movie">
+   <br />
       <h3>Add favorite movie</h3>
         <p class="url"><strong>Url: </strong>/users/:UserName/movies/:movieID</p>
       <p><strong>Method: </strong>POST</p>
@@ -210,9 +188,7 @@
         </code>
       <p><strong>Response status codes: </strong></p>
         <p>500: error: error</p>
-    </div>
-
-    <div class="remove-movie">
+   <br />
       <h3>Remove favorite movie</h3>
         <p class="url"><strong>Url: </strong>/users/:UserName/movies/:MovieID</p>
       <p><strong>Method: </strong>DELETE</p>
@@ -234,9 +210,7 @@
       <p><strong>Response status codes: </strong></p>
         <p>Array returned missing removed movie</p>
         <p>500: Error: error</p>
-    </div>
-
-    <div class="remove-user">
+   <br /> 
       <h3>Remove user</h3>
         <p class="url"><strong>Url: </strong>/users/:UserName</p>
       <p><strong>Method: </strong>DELETE</p>
@@ -251,8 +225,4 @@
       <p><strong>Response status codes: </strong></p>
         <p>200: ok - UserName has been deleted</p>
         <p>500: Error: error</p>
-    </div>
 
-  </div>
-</body>
-</html>
