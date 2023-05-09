@@ -9,26 +9,6 @@ const cors = require('cors');
 app.options('*', cors());
 app.use(cors());
 
-//if only certain origins are wanted:
-// let allowedOrigins = ['http://localhost:8080', 'https://pickles2001.herokuapp.com'];
-//
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){
-//       let message = 'The CORS policy for this app says no' + origin;
-//       return callback(new Error(message ), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
-
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -63,7 +43,7 @@ app.get('/', (req, res) => {
   res.send(`grab the popcorn, it's movie time!`);
 });
 
-//Return all movies as JSON object
+/** Return all movies as JSON object */
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
@@ -75,7 +55,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
     });
 });
 
-//Return single movie by Title as JSON object
+/** Return single movie by Title as JSON object */
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
@@ -87,7 +67,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
     });
 });
 
-//Return all movies of a certain genre as a JSON object
+/** Return all movies of a certain genre as a JSON object */
 app.get('/movies/genres/:Genre', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find({ "Genre.Name": req.params.Genre })
     .then((movie) => {
@@ -99,7 +79,7 @@ app.get('/movies/genres/:Genre', passport.authenticate('jwt', { session: false }
     });
 });
 
-//Return data about a certain director as a JSON object
+/** Return data about a certain director as a JSON object */
 app.get('/movies/directors/:Director', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ "Director.Name": req.params.Director })
     .then((movie) => {
@@ -111,15 +91,16 @@ app.get('/movies/directors/:Director', passport.authenticate('jwt', { session: f
     });
 });
 
-//CREATE a user w mongoose
-/*JSON expected in this format
-{
-  ID: Integer,
-  UserName: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-}*/
+/**POST create a user w mongoose
+  * JSON expected in this format
+  * {
+  * ID: Integer,
+  * UserName: String,
+  * Password: String,
+  * Email: String,
+  * Birthday: Date
+  * }
+  */
 app.post('/users',
   //validation logic here
   [
@@ -162,7 +143,7 @@ app.post('/users',
       });
   });
 
-//READ all users w mongoose
+/** READ all users w mongoose */
 app.get('/users', (req, res) => {
   Users.find()
     .then((users) => {
@@ -174,7 +155,7 @@ app.get('/users', (req, res) => {
     });
 });
 
-//READ user by username w mongoose
+/** READ user by username w mongoose*/
 app.get('/users/:UserName', (req, res) => {
   Users.findOne({ UserName: req.params.UserName })
     .then((users) => {
@@ -186,14 +167,15 @@ app.get('/users/:UserName', (req, res) => {
     });
 });
 
-//UPDATE user info by username w Mongoose
-/* Expect JSON in this format
-{
-  UserName: String, (required)
-  Password: String, (required)
-  Email: String, (required)
-  Birthday: Date
-}*/
+/**PUT update user info by username w Mongoose
+  * Expect JSON in this format
+  * {
+  * UserName: String, (required)
+  * Password: String, (required)
+  * Email: String, (required)
+  * Birthday: Date
+  * } 
+  */
 app.put('/users/:UserName',
   [
     check('UserName', 'Username is required.').isLength({ min: 5 }),
@@ -226,7 +208,7 @@ app.put('/users/:UserName',
   });
 
 
-//Add a favorite movie w mongoose
+/** POST Add a favorite movie w mongoose */
 app.post('/users/:UserName/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
     $push: { FavoriteMovies: req.params.MovieID }
@@ -242,7 +224,7 @@ app.post('/users/:UserName/movies/:MovieID', (req, res) => {
     });
 });
 
-//Delete a favorite movie w mongoose
+/**DELETE Delete a favorite movie w mongoose*/
 app.delete('/users/:UserName/Movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ UserName: req.params.UserName }, {
     $pull: { FavoriteMovies: req.params.MovieID }
@@ -258,7 +240,7 @@ app.delete('/users/:UserName/Movies/:MovieID', (req, res) => {
     });
 });
 
-//Delete a user by username w Mongoose
+/** DELETE Delete a user by username w mongoose */
 app.delete('/users/:UserName', (req, res) => {
   Users.findOneAndRemove({ UserName: req.params.UserName })
     .then((users) => {
@@ -274,13 +256,13 @@ app.delete('/users/:UserName', (req, res) => {
     });
 });
 
-//Errors
+/** Log errors */
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Well crap, something broke.');
 });
 
-//listens for requests
+/** Opens port and listens for requests */
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('listening on port ' + port);
