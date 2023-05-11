@@ -19,6 +19,7 @@ and birthdate. Users are able to add and remove favorite movies to be stored in 
 <br>
 <h2>Deployments</h2>
 <a href="https://pickles2001.herokuapp.com/">Through Heroku</a>, <a href="https://bingeablefilms.netlify.app/">Active site</a>
+<br>
 <a href="https://ajbbents.github.io/myFlix-Angular-client/welcome">Through Angular</a>
 <br>
 <h2>Example of endpoint return through postman</h2>
